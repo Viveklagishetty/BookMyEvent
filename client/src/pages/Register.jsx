@@ -10,6 +10,8 @@ const Register = () => {
         confirmPassword: ''
     });
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { register } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -69,25 +71,43 @@ const Register = () => {
                     </div>
                     <div className="form-group">
                         <label className="form-label">Password</label>
-                        <input
-                            type="password"
-                            className="form-input"
-                            name="password"
-                            value={password}
-                            onChange={onChange}
-                            required
-                        />
+                        <div className="password-wrapper">
+                            <button
+                                type="button"
+                                className="password-toggle"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? '👁️' : '🙈'}
+                            </button>
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                className="form-input password-input-with-toggle"
+                                name="password"
+                                value={password}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
                     </div>
                     <div className="form-group">
                         <label className="form-label">Confirm Password</label>
-                        <input
-                            type="password"
-                            className="form-input"
-                            name="confirmPassword"
-                            value={confirmPassword}
-                            onChange={onChange}
-                            required
-                        />
+                        <div className="password-wrapper">
+                            <button
+                                type="button"
+                                className="password-toggle"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                                {showConfirmPassword ? '👁️' : '🙈'}
+                            </button>
+                            <input
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                className="form-input password-input-with-toggle"
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
                     </div>
                     <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
                         Register
